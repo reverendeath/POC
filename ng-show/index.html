@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+
+<meta charset="utf-8"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="controller.js"></script>
+    <script src="provider.js"></script>
+  <title>ng-show</title>
+</head>
+<body ng-controller="myController">
+
+<button ng-click="toggle()">click here to toggle</button>
+<div ng-show='show=="msg1"'>This is message1</div>
+<div ng-show='show=="msg2"'>This is message2</div>
+
+ 
+</body >
+</html>
