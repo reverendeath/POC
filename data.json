@@ -1,0 +1,39 @@
+{
+  "books": [
+    {
+      "id": 101, 
+      "title": "Zero to One", 
+      "author":"Peter Thiel", 
+      "year_published": 2014,
+      "rating": 4.03
+    },
+    {
+      "id": 102, 
+      "title": "The Origin of Species", 
+      "author": "Charles Darwin", 
+      "year_published": 1889,
+      "rating": 4.20
+    },
+    {
+      "id": 103, 
+      "title": "The day I stopped drinking milk", 
+      "author": "Sudha Murthy", 
+      "year_published": 2010,
+      "rating": 4.50
+    },
+    {
+      "id": 104, 
+      "title": "Harry Potter", 
+      "author": "J.K.Rowling", 
+      "year_published": 2004,
+      "rating": 4.80
+    },
+    {
+      "id": 105, 
+      "title": "My experiments with truth", 
+      "author": "Mahatma Gandhi", 
+      "year_published": 1946,
+      "rating": 3.5
+    }
+  ]
+}
