@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+<meta charset="utf-8"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="controller.js"></script>
+      <title>ng-include and CRUD</title>
+</head>
+
+<body ng-controller="myController">
+<ul ng-repeat="book in books" ng-include="getTemplate(book)">
+
+<script type="text/ng-template" id="display">
+<li>{{book.id+' -  '+book.title+'___  BY____ '+book.author+'___ IN ___'+ book.year_published+'-  '+book.rating}}
+<button ng-click="deleteBook(book)">Delete</button>
+<button ng-click="editBook($index)">Edit</button>
+</li>
+</script>
+
+<script type="text/ng-template" id="highlight">
+<li>
+<input type="number" ng-model="book.id" />
+<input type="text" ng-model="book.title" />
+<input type="text" ng-model="book.author" />
+<input type="number" ng-model="book.year_published" />
+<input type="number" ng-model="book.rating" />
+<button ng-click="makeChanges()" ng-show="edit">Make changes</button>
+</li>
+</script>
+</ul>
+
+<br/>
+<button ng-click="addBook()">Add</button>
+<input type="number" ng-model="current.id" ng-show="add" placeholder="Enter id" />
+<input type="text" ng-model="current.title" ng-show="add" placeholder="Enter title"/>
+<input type="text" ng-model="current.author" ng-show="add"  placeholder="Enter author"/>
+<input type="number" ng-model="current.year_published" ng-show="add" placeholder="Enter year"/>
+<input type="number" ng-model="current.rating" ng-show="add" placeholder="Enter rating"/>
+
+<br/>
+<button ng-click="saveBook(current)" ng-show="add">Save</button>
+
+
+</body >
+</html>
