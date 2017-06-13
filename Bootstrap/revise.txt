@@ -1,0 +1,265 @@
+Grid concept
+---------------
+col-xs-12 for extra small
+col-sm-12 for small screens
+col-md-12 for medium
+col-lg-12 for large screens (> 1200px)
+Eg: <div class="col-lg-12">write something here</div>
+---------------------
+
+Background colors
+---------------------
+bg-primary bg-success bg-info bg-warning 
+Usage: <div class="col-sm-6 bg-primary">akjna</div>
+
+container
+-------------
+<div class="container">   occupies fixed width of screen
+<div class="conatiner-fluid">     occupies entire width of screen
+
+row
+----
+<div class="row">
+
+Nested grids
+----------------
+<div class="container"
+<div class="row">
+<div class="col-sm-10">
+This is parent grid
+<div class="col-sm-5">
+This is child grid
+</div>
+</div>
+
+----------------------------------------------------------------------------------------------
+                                             Tables
+------------------------------------------------------------------------------------------------
+types of classes
+table, table-striped, table-bordered, table-hover, table-condensed
+Eg:<table class="table table-condensed">
+For responsive tables, wrap table inside "table-responsive" class
+
+Active rows
+-----------
+<tr class="active/success/info/warning/danger">
+
+----------------------------------------------------------------------------------------------
+                      Buttons
+------------------------------------------------------------------------------------------------
+<button class="btn btn-default/primary/info/success/danger/warning">
+<input type="button/submit" class="btn btn-default btn-lg/xs/sm">
+<button class="btn btn-primary btn-sm btn-block">
+<button class="btn btn-primary btn-sm btn-block" disabled="disabled">
+
+-----------------------------------------------------------------------------------------------
+                                            Basic forms
+------------------------------------------------------------------------------------------
+<form action=""method="">
+<div class="form-group">
+<label for="file-upload">file upload</label>
+<input type="file" class="form-control" id="file-upload"/>
+</div>
+</div>
+
+Inline forms
+--------------
+<form action="" method="" class="form-inline">
+
+Horizontal form
+---------------------
+<form action="" method="" class="form-horizontal">
+<div class="form-group">
+<label for="file-upload" class="col-sm-2 control-label">file upload</label>
+<div class="col-sm-10">
+<input type="file" class="form-control" id="file-upload"/>
+</div>
+</div>
+
+<div class="form-group">
+<div class="col-sm-10 col-sm-push-2">
+<input type="submit" id="submit" class="btn btn-default"/>
+</div>
+</div>
+
+FOr disabled state
+<input class="form-control" type="text" disabled>
+For readonly input
+<input class="form-control" type="text" readonly>
+
+------------------------------------------------------------------------
+Dropdowns
+--------
+<div class="dropdown">
+<button class="btn btn-default dropdown-toggle" type="button" id="sameasid"
+data-toggle="dropdown">
+Button <span class="caret"></span>
+</button>
+<ul class="dropdown-menu" aria-labelled-by="sameasid">
+<li><a href="#">Some text</a></li>
+<li><a href="#">Some text</a></li>
+<li><a href="#">Some text</a></li>
+</ul>
+</div>
+
+Navigation
+--------------
+classes -  nav, nav-tabs , nav-pills, nav-justified, nav-stacked 
+Eg:
+<div class="container">
+<div class="row"
+<div class="col-xs-12">
+ <ul class="nav nav-tabs nav-justified">
+  <li class="active"> <a href="">Home</a> </li>
+ </ul>
+</div>
+</div>
+</div>
+
+Navigation tab with dropdown
+------------------------
+<div class="container">
+<div class="row"
+<div class="col-xs-12">
+ <ul class="nav nav-tabs nav-justified">
+  <li class="dropdown-toggle" data-toggle="dropdown" > <a href="">Dropdown <span class="caret"></span></a> 
+   <ul class="dropdown-menu">
+     <li><a href="#">Item1</a></li>
+     <li><a href="#">Item1</a></li>
+     <li><a href="#">Item1</a></li>
+   </ul>
+  </li>
+ </ul>
+</div>
+</div>
+</div>
+
+
+Navbar
+----------
+
+Modals
+------
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodal">
+Click
+</button>
+<div class="modal fade" id="mymodal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+       <div class="modal-header">
+
+
+       </div>
+       <div class="modal-body">
+
+
+       </div>
+       <div class="modal-footer">
+         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+       </div>
+     </div>
+   </div>
+</div>
+
+------------------
+
+<div class="jumbotron">
+
+---------------------
+<div class="panel panel-default/primary/success/info/warning/danger">
+<div class="panel-heading">HEADING</div>
+<div class="panel-body>BODY</div>"
+</div>
+
+PANEL WITH title
+------------------
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Panel title</h3>
+  </div>
+  <div class="panel-body">
+    Panel content
+  </div>
+</div>
+
+With list groups
+------------------
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Panel heading</div>
+  <div class="panel-body">
+    <p>...</p>
+  </div>
+
+  <!-- List group -->
+  <ul class="list-group">
+    <li class="list-group-item">Cras justo odio</li>
+    <li class="list-group-item">Dapibus ac facilisis in</li>
+    <li class="list-group-item">Morbi leo risus</li>
+    <li class="list-group-item">Porta ac consectetur ac</li>
+    <li class="list-group-item">Vestibulum at eros</li>
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
