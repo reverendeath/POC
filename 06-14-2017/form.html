@@ -1,0 +1,51 @@
+<style type="text/css">
+  .btn-block {
+    display: block;
+    width: 35%;
+    margin: 0 auto;
+    margin-top: 20px;
+
+</style>
+<div class="container">
+<form class="form-horizontal">
+<div class="form-group">
+<label class="col-lg-4 control-label" for="CRNO">CR Number</label>
+<div class="col-lg-4">
+<input type="text" id="CRNO" class="form-control"/>
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-lg-4 control-label" for="MOTSID">MOTSID</label>
+<div class="col-lg-4">
+<input type="number" id="MOTSID" class="form-control"/>
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-lg-4 control-label" for="MW">M/W</label>
+<div class="col-lg-4">
+<input type="datetime" id="MW" class="form-control"/>
+</div>
+</div>
+
+<div class="form-group">
+<label class="col-lg-4 control-label" for="Approvers">Approval groups</label>
+<div class="col-lg-4">
+<select multiple class="form-control" id="Approvers">
+  <option>ATT-IT-SYSX-ADMIN</option>
+  <option>ATT-IT-SYSX-CI-TM</option>
+  <option>ATT-IT-SYSX-CCO_TM</option>
+  <option>ATT-IT-UCO-CI</option>
+  <option>ATT-IT-SYU-CI-CCO-TM</option>
+</select>
+</div>
+</div>
+</form>
+</div>
+
+<div class="container">
+<button ui-sref=".msg" class="btn btn-primary btn-block">Click to send mail</button>
+</div>
+
+<div ui-view></div>
