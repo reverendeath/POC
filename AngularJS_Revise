@@ -1,0 +1,90 @@
+AngularJS extends HTML attributes with Directives, and binds data to HTML with Expressions.
+The ng-app directive defines an AngularJS application
+The ng-model directive binds the value of HTML controls (input, select, textarea) to application data.
+The ng-bind directive binds application data to the HTML view.
+The ng-init directive initializes AngularJS application variables.
+AngularJS expressions bind AngularJS data to HTML the same way as the ng-bind directive.
+<div ng-app="" ng-init="firstName='John'">
+  <p>Name: <input type="text" ng-model="name"></p>
+  <p ng-bind="name"></p> // <p>{{name}}</p>
+<p>The name is <span ng-bind="firstName"></span></p>
+</div>
+----------------------------------------------------------------------------------------------
+AngularJS Module:
+var app = angular.module('myApp', []); 
+AngularJS Controller:
+app.controller('myCtrl', function($scope) {
+    -------------------
+	--------------------
+}); 
+-------------------------------------------------------------------------------------------------\
+Custom directive:
+app.directive("myDirective", function() {
+    return {
+        restrict : "EA",  // "A" for attribute, "E" for element, "C" for class
+        template : "<h1>Made by a directive!</h1>"
+    };
+});
+
+<p myDirective></p> --> As an attribute
+<myDirective></myDirective>  ---> As an element
+<p class="myDirective"></p>   ---> As a class
+--------------------------------------------------------------------------------------------
+ng-repeat Directive:
+<div ng-app="" ng-init="names=['Jani','Hege','Kai']">
+  <ul>
+    <li ng-repeat="x in names">
+      {{ x }}
+    </li>
+  </ul>
+</div>
+----------------------------------------------------------------------------------
+Form-Controller:
+$dirty, $pristine, $touched, $untouched, $valid, $invalid , $error.email, $error.required gives boolean values depending on the status of form controls
+ng-dirty, ng-pristine, ng-touched, ng-untouched, ng-valid, ng-invalid classes are activated depending on the status of form controls
+<style>
+input.ng-dirty.ng-touched{
+border: 2px solid red;
+}
+</style>
+<form  name="myForm" ng-model="form" novalidate>
+    Email:
+    <input type="email" name="myAddress" ng-model="text" ng-required="true" >
+    <span ng-show="myForm.myAddress.$dirty">Input control is dirty</span> </br>
+	<span ng-show="myForm.myAddress.$pristine">Input control is pristine</span> </br>
+	<span ng-show="myForm.myAddress.$touched">Input control is touched</span> </br>
+	<span ng-show="myForm.myAddress.$untouched">Input control is untouched</span> </br>
+	<span ng-show="myForm.myAddress.$valid">Input control is valid</span> </br>
+	<span ng-show="myForm.myAddress.$invalid">Input control is invalid</span> </br>
+<span ng-show="myForm.myAddress.$error.email">Input control is not email type</span> </br 
+</form>
+<button ng-click="setPristine()" ng-disabled="myForm.$invalid">SetPristine</button>
+
+
+$setPristine();
+Sets the control to its pristine state.
+
+$setDirty();
+Sets the control to its dirty state.
+
+$setUntouched();
+Sets the control to its untouched state.
+
+$setTouched();
+Sets the control to its touched state.
+
+app.controller("myController", function($scope){
+$scope.value=0;
+$scope.setPristine=function(){
+	$scope.value=11;
+	console.log("Entered");
+$scope.myForm.$setPristine();
+}
+
+$scope.setTouched=function(){
+	$scope.value=34;
+	console.log("Entered");
+$scope.myForm.$setUntouched();
+}
+
+});
