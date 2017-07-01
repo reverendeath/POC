@@ -35,13 +35,22 @@ app.directive("myDirective", function() {
 <p class="myDirective"></p>   ---> As a class
 --------------------------------------------------------------------------------------------
 ng-repeat Directive:
+The ngRepeat directive instantiates a template once per item from a collection.
+$index  - item index or key.
+$first  - true if the repeated element is first in the iterator.
+$middle - true if the repeated element is between the first and last in the iterator.
+$last   - true if the repeated element is last in the iterator.
+$even   - true if the iterator position $index is even
+$odd    - true if the iterator position $index is odd
 <div ng-app="" ng-init="names=['Jani','Hege','Kai']">
   <ul>
-    <li ng-repeat="x in names">
+    <li ng-repeat="x in names  track by $index">
       {{ x }}
     </li>
   </ul>
 </div>
+Iterating over object properties:
+<div ng-repeat="(key, value) in myObj"> ... </div>
 ----------------------------------------------------------------------------------
 Form-Controller:
 $dirty, $pristine, $touched, $untouched, $valid, $invalid , $error.email, $error.required gives boolean values depending on the status of form controls
