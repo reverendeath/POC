@@ -88,3 +88,59 @@ $scope.myForm.$setUntouched();
 }
 
 });
+
+Filters:
+currency Format a number to a currency format.
+<span>{{value | currency: "Rs.": 0}}</span>
+//{{ currency_expression | currency : symbol : fractionSize}}
+
+lowercase Format a string to lower case.
+<span>{{text | lowercase}}</span>  //{{ lowercase_expression | lowercase}}
+uppercase Format a string to upper case.
+<span>{{text | uppercase}}</span>  //{{ uppercase_expression | uppercase}}
+
+date Format a date to a specified format.
+{{ date_expression | date : format : timezone}}
+Date_expression: (e.g. yyyy-MM-ddTHH:mm:ss.sssZ and its shorter versions like yyyy-MM-ddTHH:mmZ, 
+
+yyyy-MM-dd or yyyyMMddTHHmmssZ)
+Default format is mediumDate(e.g. Sep 3, 2010)
+<span>{{date1 | date:'medium': '+0530'}}</span>  //$scope.date1=new Date();
+'medium': equivalent to 'MMM d, y h:mm:ss a' (e.g. Sep 3, 2010 12:05:08 PM)
+
+json converts a javascript object to a JSON string.
+{{ javascript_object | json : spacing}}
+{{ {'name':'value'} | json:4 }}
+
+number Format a number to a string.
+{{ number_expression | number : fractionSize}}
+
+orderBy
+{{ orderBy_expression | orderBy : expression : reverse : comparator}}
+Default sorting is ascending order, for descending order set 'reverse' to true
+
+limitTo 
+Creates a new array or string containing only a specified number of elements. The elements are 
+
+taken from either the beginning or the end of the source array, string or number, as specified 
+
+by the value and sign (positive or negative) of limit
+{{ limitTo_expression | limitTo : limit : begin}}
+If the limit number is positive, limit number of items from the beginning of the source 
+
+array/string are copied. If the number is negative, limit number of items from the end of the 
+
+source array/string are copied.
+begin indicates an offset from the end of input. Defaults to 0.
+
+filter 
+Select a subset of items from an array and returns it as a new array.
+{{ filter_expression | filter : expression : comparator : anyPropertyKey}}
+Eg: 
+<input ng-model="searchText"></label>
+<tr ng-repeat="friend in friends | filter:searchText">
+(or)
+<label>Any: <input ng-model="search.$"></label> <br>
+<label>Name only <input ng-model="search.name"></label><br>
+<label>Phone only <input ng-model="search.phone"></label><br>
+<tr ng-repeat="friendObj in friends | filter:search:strict">
