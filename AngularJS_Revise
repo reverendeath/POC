@@ -2,10 +2,14 @@ AngularJS extends HTML attributes with Directives, and binds data to HTML with E
 The ng-app directive defines an AngularJS application
 The ng-model directive binds the value of HTML controls (input, select, textarea) to application data.
 The ng-bind directive binds application data to the HTML view.
-The ng-init directive initializes AngularJS application variables.
+The ng-init directive initializes AngularJS application variables. 
+The ngRequired adds the required validator to ngModel. It is most often used for input and select controls 
+This directive sets the disabled attribute on the element (typically a form control, e.g. input, button, select etc.) 
+if the expression inside ngDisabled evaluates to truthy   //ng-disabled="expression">
 AngularJS expressions bind AngularJS data to HTML the same way as the ng-bind directive.
 <div ng-app="" ng-init="firstName='John'">
-  <p>Name: <input type="text" ng-model="name"></p>
+  <p>Name: <input type="text" ng-model="name" ng-required="true" name="inptctrl"></p>
+  <button ng-disabled="inptctrl.$invalid">This button is disable when the expression evaluates to true</button>
   <p ng-bind="name"></p> // <p>{{name}}</p>
 <p>The name is <span ng-bind="firstName"></span></p>
 </div>
