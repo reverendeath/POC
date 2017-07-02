@@ -212,19 +212,22 @@ $location.path('/new').search('x=y');  //http://example.com/base/index.html#!/ne
 $location.url();
 
 To configure the $location service, retrieve the $locationProvider and set the parameters as 
-
 follows:
 app.config(function($locationProvider) {
   $locationProvider.html5Mode(true).hashPrefix('!');
 });
 
+Within the AngularJS application, whenever user hit an anchor with link, the browser will not do 
+a full page reload. Instead the app will catch the URL and send it to your route handler client 
+side so you can interact your app further.
+
+To perform a full page reload  for the server side code to handle the utl,put a target="_self" 
+attribute to the anchor 
+Example: <a href="/ext/link?a=b" target="_self">link</a>
 
 Base href constraints:
-
 The $location service is not able to function properly if the current URL is outside the URL 
-
 given as the base href. 
-
 Set as : <base href="/base/">
 Not as  <base href="/base">(it refers to the base file found in the root / folder)
 
@@ -297,9 +300,7 @@ app.service('hexafy', function() {
 });
 
 Once you have created a service, and connected it to your application, you can use the service 
-
 in any controller, directive, filter, or even inside other services.
-
 To use the service inside a filter, add it as a dependency when defining the filter:
 
 app.filter('myFormat',['hexafy', function(hexafy) {
@@ -341,7 +342,5 @@ config – {Object} – The configuration object that was used to generate the r
 statusText – {string} – HTTP status text of the response.
 
 A response status code between 200 and 299 is considered a success status and will result in the 
-
 success callback being called. Any response status code outside of that range is considered an 
-
 error status and will result in the error callback being called
