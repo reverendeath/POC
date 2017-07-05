@@ -1,0 +1,84 @@
+Cookies are simple, small files/data that are sent to client with a server request and stored on the client side. Every time the user loads the website back, this cookie is sent with the request. This helps us keep track of the user’s actions.
+
+The following are the numerous uses of the HTTP Cookies:
+
+Session management
+Personalization(Recommendation systems)
+User tracking
+----------------------------------------------------------------------------
+HTTP is stateless.In order to associate a request to any other request, you need a way to store user data between HTTP requests. Cookies and URL parameters are both suitable ways to transport data between the client and the server. But they are both readable and on the client side.
+Sessions solve exactly this problem. You assign the client an ID and it makes all further requests using that ID. Information associated with the client is stored on the server linked to this ID.
+
+Both methods store data. Cookies do so on the client side, i.e. on the storage of your visitors' devices. Sessions are a clever "extension" in that they only store a unique ID on the client side and all the actual data on the server side. When they receive the unique ID from the client's cookie, they know what data to load on the server.
+
+
+It is preferred to use sessions because the actual values are hidden from the client, and you control when the data expires and becomes invalid. If it was all based on cookies, a user (or hacker) could manipulate their cookie data and then play requests to your site.
+
+Typically the session ID gets stored AS a cookie on the client machine, and is then matched up server-side with the session data.
+
+SESSIONS ENDS WHEN USER CLOSE HIS BROWSER,
+
+COOKIES ENDS DEPENDING ON THE LIFE TIME YOU SET FOR IT. SO IT CAN LAST FOR YEARS
+
+
+Sessions are server-side files that contain user information, while Cookies are client-side files that contain user information. Sessions have a unique identifier that maps them to specific users. This identifier can be passed in the URL or saved into a session cookie.
+
+--------------------------------------------------------------------------------------
+
+THE BEST EXPLANATION:
+
+A cookie is simply a short text string that is sent back and forth between the client and the server. You could store name=bob&password=asdf in a cookie and send that back and forth to identify the client on the server side.You could think of this as carrying on an exchange with a bank teller who has no short term memory, and needs you to identify yourself for each and every transaction. Of course using a cookie to store this kind information is horrible insecure. Cookies are also limited in size.
+
+Now, when the bank teller knows about his/her memory problem, He/She can write down your information on a piece of paper and assign you a short id number. Then, instead of giving your account number and driver's license for each transaction, you can just say "I'm client 12"
+Translating that to Web Servers:
+The server will store the pertinent information in the session object, and create a session ID which it will send back to the client in a cookie. When the client sends back the cookie, the server can simply look up the session object using the ID. So, if you delete the cookie, the session will be lost.
+
+One other alternative is for the server to use URL rewriting to exchange the session id.
+
+Suppose you had a link - www.myserver.com/myApp.jsp You could go through the page and rewrite every URL as www.myserver.com/myApp.jsp?sessionID=asdf or even www.myserver.com/asdf/myApp.jsp and exchange the identifier that way
+
+------------------------------------------------------------------------------------------
+Authentication is the process of verifying if the user is in fact who he/she is declared to be. Authorization is the process of determining if the user has the privileges to access the resources he/she requested.
+var express = require('express'),
+    app = express(),
+    session = require('express-session');
+app.use(session({
+    secret: '2C44-4D44-WppQ38S',
+    resave: true,
+    saveUninitialized: true
+}));
+ 
+// Authentication and Authorization Middleware
+var auth = function(req, res, next) {
+  if (req.session && req.session.user === "amy" && req.session.admin)
+    return next();
+  else
+    return res.sendStatus(401);
+};
+ 
+// Login endpoint
+app.get('/login', function (req, res) {
+  if (!req.query.username || !req.query.password) {
+    res.send('login failed');    
+  } else if(req.query.username === "amy" || req.query.password === "amyspassword") {
+    req.session.user = "amy";
+    req.session.admin = true;
+    res.send("login success!");
+  }
+});
+ 
+// Logout endpoint
+app.get('/logout', function (req, res) {
+  req.session.destroy();
+  res.send("logout success!");
+});
+ 
+// Get content endpoint
+app.get('/content', auth, function (req, res) {
+    res.send("You can only see this after you've logged in.");
+});
+ 
+app.listen(3000);
+console.log("app running at http://localhost:3000");
+
+ The session will be different for each user, and also be unique for the same user using different browsers. For example, if the same user logged in using Chrome, and the open up Firefox, the user will have to login again in FireFox in order to gain protected resources.
