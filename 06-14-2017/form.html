@@ -1,103 +1,142 @@
-<!DOCTYPE html>
-<html ng-app="myApp">
-<head>
-  <base href="/"/>
-  <meta charset="utf-8">
-  <title>MAIN</title>
-
+<div class="container" ng-controller="formController">
+ <form class="form-horizontal" name="myForm" method="POST" action="/form">
  
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
- <link href="./css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
- 
- <style type="text/css">
-  body {
-    background-color: #eee;
-  }
-  .nav-justified > li > a {
-    padding-top: 15px;
-    padding-bottom: 15px;
-    font-weight: bold;
-    color: #777;
-    background-color: rgba(91, 192, 222, 0.49);
-    border-right: 1px solid #3c763d;
-    border-left: 1px solid #286090;
-  }
-  .nav-justified {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    max-height: 52px;
-    box-shadow: 0 0 7px 0px black;
-  }
-  .input-group[class*=col-] {
-    float: left;
-	padding-right: 15px;
-    padding-left: 15px
-  }
-  .btn-block {
-    display: block;
-    width: 35%;
-    margin: 0 auto;
-    margin-top: 20px;
-  }
+ <div class="row form-horizontal">
+ <div class="col-lg-6">
+  <div class="form-group">
+   <label class="col-lg-4 control-label" for="CRNO">CR Number</label>
+    <div class="col-lg-6">
+     <input type="text" id="CRNO" class="form-control"/>
+    </div>
+  </div>
   
-  .form-group {
-    margin-bottom: 25px;
-  }
-  #Approvers {
-    height: 68px;
-  }
- .footer {
-    position: static;
-    bottom: 0;
-    width: 100%;
-    height: 60px;
-    background-color: #f5f5f5;
-}
-.wrapper-vcenter {
-    display: flex;
-    align-items: center;
-    margin-bottom: 5px;
-    padding: 2px;
-}
+  <div class="form-group">
+  <label class="col-lg-4 control-label" for="MOTSID">MOTSID</label>
+    <div class="col-lg-6">
+     <input type="number" id="MOTSID" class="form-control"/>
+    </div>
+  </div>
+  </div>
 
-#bs-override .center {
-    float: none;
-    margin-left: auto;
-    margin-right: auto;
-}
+ <div class="col-lg-6">
+  <div class="form-group">
+    <label class="col-lg-4 control-label" for="Env">Environment</label>
+    <div class="col-lg-6">
+     <select class="form-control" id="Env" ng-model="selectedEnv" ng-options="x for x in environment"> </select>
+    </div>
+  </div>
+  
+  <div class="form-group">
+   <label class="col-lg-4 control-label" for="App">Application</label>
+    <div class="col-lg-6">
+     <input type="text" id="App" class="form-control"/>
+   </div>
+  </div>
+  </div>
+  
+  </div>
+  
+  <div class="form-group">
+   <label class="col-lg-2 control-label" for="Servers">Application Servers</label>
+    <div class="col-lg-8">
+     <input type="text" id="Servers" class="form-control" ng-model="servers" ng-list/>
+    </div>
+    <div class="col-lg-1">
+     <input style="text-align:center" class="form-control" value="{{count}}" ng-disabled="true" />
+    </div>
+  </div>
+   
+  <div class="form-group">
+   <label class="col-lg-2 control-label" for="DB">DB Servers</label>
+    <div class="col-lg-8">
+     <input type="text" id="DB" class="form-control" ng-model="db" ng-list/>
+    </div>
+    <div class="col-lg-1">
+     <input style="text-align:center" class="form-control" value="{{dbcount}}" ng-disabled="true" />
+    </div>
+  </div>
+  
+  
+  <div class="row form-horizontal">
+  <div class="col-lg-6">
+  <div class="form-group">
+    <label for="dtp_input1" class="col-lg-4 control-label">Planned start Date</label>
+        <div class="input-group date form_datetime col-lg-6" data-date="1979-09-16T05:25:07Z" data-date-format="dd M yyyy - HH:ii p" data-link-field="dtp_input1">
+        <input class="form-control" type="text" value="" ng-disabled="true">
+		<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+        </div>
+	<input type="hidden" id="dtp_input1" value="" />
+  </div>
+  <div class="form-group">
+   <label class="col-lg-4 control-label" for="AppAck">App Acknowledgement</label>
+    <div class="col-lg-6">
+     <select class="form-control" id="AppAck" ng-model="AppVal" ng-options="x for x in options"> </select>
+   </div>  
+   </div>
+   </div>
+  
+  <div class="col-lg-6">
+  <div class="form-group">
+    <label for="dtp_input1" class="col-lg-4 control-label">Planned End Date</label>
+        <div class="input-group date form_datetime col-lg-6" data-date="1979-09-16T05:25:07Z" data-date-format="dd M yyyy - HH:ii p" data-link-field="dtp_input1">
+        <input class="form-control" size="16" type="text" value="" ng-disabled="true">
+		<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+        </div>
+	<input type="hidden" id="dtp_input1" value="" /><br/>
+  </div>
+  <div class="form-group">
+  <label class="col-lg-4 control-label" for="DBAck">DB Acknowledgement</label>
+    <div class="col-lg-6">
+     <select class="form-control" id="DBAck" ng-model="DBVal" ng-options="x for x in options"> </select>
+    </div>
+  </div>
+  </div>
+  </div>
+				
+  <div class="form-group">
+   <label class="col-lg-2 control-label" for="Approvers">Approval groups</label>
+    <div class="col-lg-9">
+     <input class="form-control" id="Approvers" type="text"/>
+    </div>
+  </div>
+  
+  <div class="form-group">
+   <label class="col-lg-2 control-label" for="chat">Chat Room</label>
+    <div class="col-lg-9">
+     <input type="url" id="chat" class="form-control"/>
+    </div>
+  </div>
+  
+  <div class="form-group">
+   <label class="col-lg-2 control-label" for="To">To</label>
+    <div class="col-lg-9">
+     <input type="email" id="To" class="form-control"/>
+    </div>
+  </div>
+  
+  <div class="form-group">
+   <label class="col-lg-2 control-label" for="Cc">Cc</label>
+    <div class="col-lg-9">
+     <input type="email" id="Cc" class="form-control"/>
+    </div>
+  </div>
+  
+  
 
-
- </style>
- 
-</head>
-
-<body ng-controller="myController">
- <div class="page-header">
- <div class="container">
- <nav>
-          <ul class="nav nav-justified">
-            <li class="active"><a ui-sref="home">Home</a></li>
-            <li><a ui-sref="form">CR Form</a></li>
-            <li><a ui-sref="details">CR Details</a></li>
-            <li><a ui-sref="MOTS">MOTS</a></li>
-            <li><a ui-sref="POC">Follow up</a></li>            
-          </ul>
- </nav>
-
-</div> 
+ </form>
 </div>
 
 
-<div ui-view></div>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
- <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>-->
- <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
- <script src="controller.js"></script>
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
- <script type="text/javascript" src="./js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
- 
-</body>
+<div class="col-md-3 center">
+<input  ui-sref=".msg" value="Click here to send mail" class="btn btn-primary btn-block"/>
+</div>
 
-</html>
+<div ui-view></div>
+
+<footer class="footer">
+    <div class="container">
+        <span class="wrapper-vcenter center text-muted">
+        <h5 class="center">AT&amp;T Proprietary (Internal Use Only); Not for use or disclosure outside the AT&amp;T companies except under written agreement</h5>
+        </span>
+    </div>
+</footer>
