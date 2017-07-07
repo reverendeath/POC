@@ -1,51 +1,103 @@
-<style type="text/css">
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <base href="/"/>
+  <meta charset="utf-8">
+  <title>MAIN</title>
+
+ 
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+ <link href="./css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+ 
+ <style type="text/css">
+  body {
+    background-color: #eee;
+  }
+  .nav-justified > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-weight: bold;
+    color: #777;
+    background-color: rgba(91, 192, 222, 0.49);
+    border-right: 1px solid #3c763d;
+    border-left: 1px solid #286090;
+  }
+  .nav-justified {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-height: 52px;
+    box-shadow: 0 0 7px 0px black;
+  }
+  .input-group[class*=col-] {
+    float: left;
+	padding-right: 15px;
+    padding-left: 15px
+  }
   .btn-block {
     display: block;
     width: 35%;
     margin: 0 auto;
     margin-top: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 25px;
+  }
+  #Approvers {
+    height: 68px;
+  }
+ .footer {
+    position: static;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #f5f5f5;
+}
+.wrapper-vcenter {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    padding: 2px;
+}
 
-</style>
-<div class="container">
-<form class="form-horizontal">
-<div class="form-group">
-<label class="col-lg-4 control-label" for="CRNO">CR Number</label>
-<div class="col-lg-4">
-<input type="text" id="CRNO" class="form-control"/>
-</div>
+#bs-override .center {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+ </style>
+ 
+</head>
+
+<body ng-controller="myController">
+ <div class="page-header">
+ <div class="container">
+ <nav>
+          <ul class="nav nav-justified">
+            <li class="active"><a ui-sref="home">Home</a></li>
+            <li><a ui-sref="form">CR Form</a></li>
+            <li><a ui-sref="details">CR Details</a></li>
+            <li><a ui-sref="MOTS">MOTS</a></li>
+            <li><a ui-sref="POC">Follow up</a></li>            
+          </ul>
+ </nav>
+
+</div> 
 </div>
 
-<div class="form-group">
-<label class="col-lg-4 control-label" for="MOTSID">MOTSID</label>
-<div class="col-lg-4">
-<input type="number" id="MOTSID" class="form-control"/>
-</div>
-</div>
-
-<div class="form-group">
-<label class="col-lg-4 control-label" for="MW">M/W</label>
-<div class="col-lg-4">
-<input type="datetime" id="MW" class="form-control"/>
-</div>
-</div>
-
-<div class="form-group">
-<label class="col-lg-4 control-label" for="Approvers">Approval groups</label>
-<div class="col-lg-4">
-<select multiple class="form-control" id="Approvers">
-  <option>ATT-IT-SYSX-ADMIN</option>
-  <option>ATT-IT-SYSX-CI-TM</option>
-  <option>ATT-IT-SYSX-CCO_TM</option>
-  <option>ATT-IT-UCO-CI</option>
-  <option>ATT-IT-SYU-CI-CCO-TM</option>
-</select>
-</div>
-</div>
-</form>
-</div>
-
-<div class="container">
-<button ui-sref=".msg" class="btn btn-primary btn-block">Click to send mail</button>
-</div>
 
 <div ui-view></div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+ <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>-->
+ <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+ <script src="controller.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <script type="text/javascript" src="./js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+ 
+</body>
+
+</html>
