@@ -43,3 +43,10 @@ The options in the dropdown list does not have to be the key in a key-value pair
 
 <select ng-model="selectedCar" ng-options="y.brand for (x, y) in cars">
 </select>
+
+----------------------------------------------------------------------------------------------------
+Some Javascript:
+!x will return true for every "falsy" value (empty string, 0, null, false, undefined, NaN) whereas x == null will only return true if x is null
+NOT operator ! converts a value into its opposite boolean equivalent.
+In addition, if you compare values with ==, JavaScript does type conversion which can lead to unexpected behavior (like undefined == null).
+It is better to always use strict comparison ===(value and type must be the same)
