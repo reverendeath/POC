@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>MAIN</title>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+ <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>-->
+ <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+ <script src="controller.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+ <style type="text/css">
+  body {
+    background-color: #eee;
+  }
+  .nav-justified > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    font-weight: bold;
+    color: #777;
+    background-color: rgba(91, 192, 222, 0.49);
+    border-right: 1px solid #3c763d;
+    border-left: 1px solid #286090;
+  }
+  .nav-justified {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-height: 52px;
+    box-shadow: 0 0 7px 0px black;
+   }
+
+ </style>
+ 
+</head>
+
+<body ng-controller="myController">
+ <div class="page-header">
+ <div class="container">
+ 
+ <nav>
+          <ul class="nav nav-justified">
+            <li class="active"><a ui-sref="home">Home</a></li>
+            <li><a ui-sref="form">CR Form</a></li>
+            <li><a ui-sref="details">CR Details</a></li>
+            <li><a ui-sref="MOTS">MOTS</a></li>
+            <li><a ui-sref="POC">Follow up</a></li>            
+          </ul>
+ </nav>
+
+</div> 
+</div>
+
+
+<div ui-view></div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+Difference between ng-repeat and ng-options:
+Dropdowns made with ng-options allows the selected value to be an object, while dropdowns made from ng-repeat has to be a string.
+
+The ng-repeat directive has its limitations, the selected value must be a string:
+<select ng-model="selectedCar">
+<option ng-repeat="x in cars" value="{{x.model}}">{{x.model}}</option>
+</select>
+<h1>You selected: {{selectedCar}}</h1>
+
+When using the ng-options directive, the selected value can be an object:
+
+<select ng-model="selectedCar" ng-options="x.model for x in cars"> </select>
+<h1>You selected: {{selectedCar.model}}</h1>
+<p>Its color is: {{selectedCar.color}}</p>
+
+When the selected value can be an object, it can hold more information, and your application can be more flexible.
+
+The Data Source as an Object:
+//$scope.cars = {
+    car01 : "Ford",
+    car02 : "Fiat",
+    car03 : "Volvo"
+}; //
+
+Using an object as the data source, x represents the key, and y represents the value:
+<select ng-model="selectedCar" ng-options="x for (x, y) in cars">
+</select>
+
+<h1>You selected: {{selectedCar}}</h1>
+
+The selected value will always be the value in a key-value pair.
+
+The value in a key-value pair can also be an object:
+
+The selected value will still be the value in a key-value pair, only this time it is an object:
+$scope.cars = {
+car01 : {brand : "Ford", model : "Mustang", color : "red"},
+car02 : {brand : "Fiat", model : "500", color : "white"},
+car03 : {brand : "Volvo", model : "XC90", color : "black"}
+};
+
+The options in the dropdown list does not have to be the key in a key-value pair, it can also be the value, or a property of the value object:
+
+<select ng-model="selectedCar" ng-options="y.brand for (x, y) in cars">
+</select>
+
+----------------------------------------------------------------------------------------------------
+Some Javascript:
+!x will return true for every "falsy" value (empty string, 0, null, false, undefined, NaN) whereas x == null will only return true if x is null
+NOT operator ! converts a value into its opposite boolean equivalent.
+In addition, if you compare values with ==, JavaScript does type conversion which can lead to unexpected behavior (like undefined == null).
+It is better to always use strict comparison ===(value and type must be the same)

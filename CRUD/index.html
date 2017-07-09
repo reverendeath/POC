@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+
+<meta charset="utf-8"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <script src="controller.js"></script>
+    <script src="provider.js"></script>
+  <title>ng-show</title>
+</head>
+<body ng-controller="myController">
+
+<ul ng-repeat="book in books">
+<li>{{book.id+' -  '+book.title+'___  BY____ '+book.author+'___ IN ___'+ book.year_published+'-  '+book.rating}}</li>
+<button ng-click="deleteBook(book)">Delete</button>
+<button ng-click="editBook($index)">Edit</button>
+</ul>
+
+<button ng-click="addBook()">Add</button>
+
+<br/>
+<input type="number" ng-model="current.id" ng-show="add || edit" placeholder="Enter id" />
+<input type="text" ng-model="current.title" ng-show="add || edit" placeholder="Enter title"/>
+<input type="text" ng-model="current.author" ng-show="add || edit"  placeholder="Enter author"/>
+<input type="number" ng-model="current.year_published" ng-show="add || edit" placeholder="Enter year"/>
+<input type="number" ng-model="current.rating" ng-show="add || edit" placeholder="Enter rating"/>
+
+<br/>
+<button ng-click="saveBook(current)" ng-show="add">Save</button>
+<button ng-click="makeChanges()" ng-show="edit">Make changes</button>
+
+</body >
+</html>

@@ -1,0 +1,346 @@
+AngularJS extends HTML attributes with Directives, and binds data to HTML with Expressions.
+The ng-app directive defines an AngularJS application
+The ng-model directive binds the value of HTML controls (input, select, textarea) to application data.
+The ng-bind directive binds application data to the HTML view.
+The ng-init directive initializes AngularJS application variables. 
+The ngRequired adds the required validator to ngModel. It is most often used for input and select controls 
+This directive sets the disabled attribute on the element (typically a form control, e.g. input, button, select etc.) 
+if the expression inside ngDisabled evaluates to truthy   //ng-disabled="expression">
+AngularJS expressions bind AngularJS data to HTML the same way as the ng-bind directive.
+<div ng-app="" ng-init="firstName='John'">
+  <p>Name: <input type="text" ng-model="name" ng-required="true" name="inptctrl"></p>
+  <button ng-disabled="inptctrl.$invalid">This button is disable when the expression evaluates to true</button>
+  <p ng-bind="name"></p> // <p>{{name}}</p>
+<p>The name is <span ng-bind="firstName"></span></p>
+</div>
+----------------------------------------------------------------------------------------------
+AngularJS Module:
+var app = angular.module('myApp', []); 
+AngularJS Controller:
+app.controller('myCtrl', function($scope) {
+    -------------------
+	--------------------
+}); 
+-------------------------------------------------------------------------------------------------\
+Custom directive:
+app.directive("myDirective", function() {
+    return {
+        restrict : "EA",  // "A" for attribute, "E" for element, "C" for class
+        template : "<h1>Made by a directive!</h1>"
+    };
+});
+
+<p myDirective></p> --> As an attribute
+<myDirective></myDirective>  ---> As an element
+<p class="myDirective"></p>   ---> As a class
+--------------------------------------------------------------------------------------------
+ng-repeat Directive:
+The ngRepeat directive instantiates a template once per item from a collection.
+$index  - item index or key.
+$first  - true if the repeated element is first in the iterator.
+$middle - true if the repeated element is between the first and last in the iterator.
+$last   - true if the repeated element is last in the iterator.
+$even   - true if the iterator position $index is even
+$odd    - true if the iterator position $index is odd
+<div ng-app="" ng-init="names=['Jani','Hege','Kai']">
+  <ul>
+    <li ng-repeat="x in names  track by $index">
+      {{ x }}
+    </li>
+  </ul>
+</div>
+Iterating over object properties:
+<div ng-repeat="(key, value) in myObj"> ... </div>
+----------------------------------------------------------------------------------
+Form-Controller:
+$dirty, $pristine, $touched, $untouched, $valid, $invalid , $error.email, $error.required gives boolean values depending on the status of form controls
+ng-dirty, ng-pristine, ng-touched, ng-untouched, ng-valid, ng-invalid classes are activated depending on the status of form controls
+<style>
+input.ng-dirty.ng-touched{
+border: 2px solid red;
+}
+</style>
+<form  name="myForm" ng-model="form" novalidate>
+    Email:
+    <input type="email" name="myAddress" ng-model="text" ng-required="true" >
+    <span ng-show="myForm.myAddress.$dirty">Input control is dirty</span> </br>
+	<span ng-show="myForm.myAddress.$pristine">Input control is pristine</span> </br>
+	<span ng-show="myForm.myAddress.$touched">Input control is touched</span> </br>
+	<span ng-show="myForm.myAddress.$untouched">Input control is untouched</span> </br>
+	<span ng-show="myForm.myAddress.$valid">Input control is valid</span> </br>
+	<span ng-show="myForm.myAddress.$invalid">Input control is invalid</span> </br>
+<span ng-show="myForm.myAddress.$error.email">Input control is not email type</span> </br 
+</form>
+<button ng-click="setPristine()" ng-disabled="myForm.$invalid">SetPristine</button>
+
+
+$setPristine();
+Sets the control to its pristine state.
+
+$setDirty();
+Sets the control to its dirty state.
+
+$setUntouched();
+Sets the control to its untouched state.
+
+$setTouched();
+Sets the control to its touched state.
+
+app.controller("myController", function($scope){
+$scope.value=0;
+$scope.setPristine=function(){
+	$scope.value=11;
+	console.log("Entered");
+$scope.myForm.$setPristine();
+}
+
+$scope.setTouched=function(){
+	$scope.value=34;
+	console.log("Entered");
+$scope.myForm.$setUntouched();
+}
+
+});
+
+Filters:
+currency Format a number to a currency format.
+<span>{{value | currency: "Rs.": 0}}</span>
+//{{ currency_expression | currency : symbol : fractionSize}}
+
+lowercase Format a string to lower case.
+<span>{{text | lowercase}}</span>  //{{ lowercase_expression | lowercase}}
+uppercase Format a string to upper case.
+<span>{{text | uppercase}}</span>  //{{ uppercase_expression | uppercase}}
+
+date Format a date to a specified format.
+{{ date_expression | date : format : timezone}}
+Date_expression: (e.g. yyyy-MM-ddTHH:mm:ss.sssZ and its shorter versions like yyyy-MM-ddTHH:mmZ, 
+
+yyyy-MM-dd or yyyyMMddTHHmmssZ)
+Default format is mediumDate(e.g. Sep 3, 2010)
+<span>{{date1 | date:'medium': '+0530'}}</span>  //$scope.date1=new Date();
+'medium': equivalent to 'MMM d, y h:mm:ss a' (e.g. Sep 3, 2010 12:05:08 PM)
+
+json converts a javascript object to a JSON string.
+{{ javascript_object | json : spacing}}
+{{ {'name':'value'} | json:4 }}
+
+number Format a number to a string.
+{{ number_expression | number : fractionSize}}
+
+orderBy
+{{ orderBy_expression | orderBy : expression : reverse : comparator}}
+Default sorting is ascending order, for descending order set 'reverse' to true
+
+limitTo 
+Creates a new array or string containing only a specified number of elements. The elements are 
+
+taken from either the beginning or the end of the source array, string or number, as specified 
+
+by the value and sign (positive or negative) of limit
+{{ limitTo_expression | limitTo : limit : begin}}
+If the limit number is positive, limit number of items from the beginning of the source 
+
+array/string are copied. If the number is negative, limit number of items from the end of the 
+
+source array/string are copied.
+begin indicates an offset from the end of input. Defaults to 0.
+
+filter 
+Select a subset of items from an array and returns it as a new array.
+{{ filter_expression | filter : expression : comparator : anyPropertyKey}}
+Eg: 
+<input ng-model="searchText"></label>
+<tr ng-repeat="friend in friends | filter:searchText">
+(or)
+<label>Any: <input ng-model="search.$"></label> <br>
+<label>Name only <input ng-model="search.name"></label><br>
+<label>Phone only <input ng-model="search.phone"></label><br>
+<tr ng-repeat="friendObj in friends | filter:search:strict">
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+$location service:
+The $location service parses the URL in the browser address bar (based on window.location) and 
+
+makes the URL available to your application. Changes to the URL in the address bar are reflected 
+
+into the $location service and changes to $location are reflected into the browser address bar.
+
+The $location service:
+1) Represents the URL object as a set of methods (protocol, host, port, path, search, hash).
+2)Exposes the current URL in the browser address bar, so you can
+   (a)Watch and observe the URL.
+   (b)Change the URL.
+3)Maintains synchronization between itself and the browser's URL when the user
+   (a)Changes the address in the browser's address bar.
+   (b)Clicks the back or forward button in the browser (or clicks a History link).
+   (c)Clicks on a link in the page.
+
+When should I use $location?
+Any time your application needs to react to a change in the current URL or if you want to change 
+
+the current URL in the browser.
+
+What does it not do?
+It does not cause a full page reload when the browser URL is changed. To reload the page after 
+
+changing the URL, use the lower-level API, $window.location.href
+
+Getter and setter methods:
+$location service provides getter methods for read-only parts of the URL (absUrl, protocol, 
+
+host, port) and getter / setter methods for url, path, search, hash:
+
+http://example.com/base/index.html#!/a 
+Getter method examples:
+$location.absUrl();       //http://example.com/base/index.html#!/a           
+$location.protocol();     //http
+$location.host() ;        //example.com
+$location.port();         //80
+$location.path();         //  /a
+$location.search();
+$location.hash();         //  /a
+
+Setter Methods:
+http://example.com/base/index.html#!/a   //Initial
+$location.path('/foo');   //http://example.com/base/index.html#!/foo
+$location.search({a: 'b', c: true});  //http://example.com/base/index.html#!/foo?a=b&c
+For example, to change multiple segments in one go, chain setters like this:
+$location.path('/newValue').search({key: value});
+$location.path('/new').search('x=y');  //http://example.com/base/index.html#!/new?x=y
+$location.url();
+
+To configure the $location service, retrieve the $locationProvider and set the parameters as 
+follows:
+app.config(function($locationProvider) {
+  $locationProvider.html5Mode(true).hashPrefix('!');
+});
+
+Within the AngularJS application, whenever user hit an anchor with link, the browser will not do 
+a full page reload. Instead the app will catch the URL and send it to your route handler client 
+side so you can interact your app further.
+
+To perform a full page reload  for the server side code to handle the utl,put a target="_self" 
+attribute to the anchor 
+Example: <a href="/ext/link?a=b" target="_self">link</a>
+
+Base href constraints:
+The $location service is not able to function properly if the current URL is outside the URL 
+given as the base href. 
+Set as : <base href="/base/">
+Not as  <base href="/base">(it refers to the base file found in the root / folder)
+
+-------------------------------------------------------------------------------------
+
+$timeout service:
+AngularJS's wrapper for window.setTimeout
+The return value of calling $timeout is a promise, which will be resolved when the delay has 
+
+passed and the timeout function, if provided, is executed.
+
+To cancel a timeout request, call $timeout.cancel(promise)
+Returns true if the task hasn't executed yet and was successfully canceled.
+If you only want a promise that will be resolved after some specified delay then you can call 
+
+$timeout without the fn function.
+
+$timeout([fn], [delay], [invokeApply], [Pass]); //Delay in milliseconds
+
+ $scope.myHeader = "Hello World!";
+ prms =  $timeout(function () {
+        $scope.myHeader = "How are you today?";
+    }, 2000);
+
+$timeout.cancel(prms)   //cancels the timeout request
+
+----------------------------------------------------------------------------------
+
+$interval service:
+AngularJS's wrapper for window.setInterval. The fn function is executed every delay 
+
+milliseconds.
+
+To cancel an interval, call $interval.cancel(promise);
+Returns true if the task was successfully canceled.
+
+$interval(fn, delay, [count], [invokeApply], [Pass]); 
+//count is no of times to repeatIf not set, or 0, will repeat indefinitely.
+$scope.theTime = new Date().toLocaleTimeString();
+ stop= $interval(function () {
+        $scope.theTime = new Date().toLocaleTimeString();
+    }, 1000);
+
+$interval.cancel(stop);  //cancels the interval
+
+-----------------------------------------------------------------------------------
+
+$window:
+
+A reference to the browser's window object. 
+The window object represents an open window in a browser.
+Eg:
+$window.alert(greeting);
+
+Some of Window Object Properties:
+closed//Returns a Boolean value indicating whether a window has been closed or not
+innerHeight,innerWidth,length
+Window Object Methods:
+alert(), close(), prompt(), confirm()
+
+------------------------------------------------------------------------------------------
+
+
+Custom service and custom filter example:
+
+app.service('hexafy', function() {
+    this.myFunc = function (x) {
+        return x.toString(16);
+    }
+});
+
+Once you have created a service, and connected it to your application, you can use the service 
+in any controller, directive, filter, or even inside other services.
+To use the service inside a filter, add it as a dependency when defining the filter:
+
+app.filter('myFormat',['hexafy', function(hexafy) {
+    return function(x) {
+        return hexafy.myFunc(x);
+    };
+}]);
+
+Usage:
+<li ng-repeat="x in counts">{{x | myFormat}}</li>
+
+-----------------------------------------------------------------------------------------------
+
+$http service:
+The $http service is a core AngularJS service that facilitates communication with the remote 
+
+HTTP servers
+
+Usage:
+$http.get('/someUrl', config).then(successCallback, errorCallback);
+$http.post('/someUrl', data, config).then(successCallback, errorCallback); 
+$http.put('/someUrl', data, config).then(successCallback, errorCallback); 
+
+function successCallback(response) {
+    // this callback will be called asynchronously
+    // when the response is available
+  }
+function errorCallback(response) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  }
+
+The response object has these properties:
+
+data – {string|Object} – The response body transformed with the transform functions.
+status – {number} – HTTP status code of the response.
+headers – {function([headerName])} – Header getter function.
+config – {Object} – The configuration object that was used to generate the request.
+statusText – {string} – HTTP status text of the response.
+
+A response status code between 200 and 299 is considered a success status and will result in the 
+success callback being called. Any response status code outside of that range is considered an 
+error status and will result in the error callback being called
