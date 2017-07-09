@@ -2,7 +2,7 @@ var app=angular.module("myApp",["ui.router"]);
 
 
 app.config(function($stateProvider,$locationProvider){
-	$locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(true);
 $stateProvider
 .state('home',{
    url: '/home',
@@ -18,8 +18,13 @@ $stateProvider
 })
 .state('details',{
    url:'/details',
-   templateUrl: 'details.html'
-});
+   templateUrl: 'details.html',
+   controller: 'detailsController'
+})
+.state('details.modal',{
+   templateUrl: 'CRmodal.html'
+
+})
 //.otherwise({
   //  redirectTo:'/'
 //});
@@ -38,12 +43,12 @@ app.controller("formController",function($scope){
 $scope.servers=[];
 $scope.db=[];
 $scope.$watch('servers', function(newValue,oldValue){
-	console.log($scope.servers);
-	$scope.count=$scope.servers.length;
+    console.log($scope.servers);
+    $scope.count=$scope.servers.length;
 });
 $scope.$watch('db', function(newValue,oldValue){
-	console.log($scope.db);
-	$scope.dbcount=$scope.db.length;
+    console.log($scope.db);
+    $scope.dbcount=$scope.db.length;
 });
 $scope.environment=['Development','Test','Production','Stage','DR'];
 $scope.options=["Yes","No","NA"];
@@ -52,11 +57,31 @@ $scope.options=["Yes","No","NA"];
         //language:  'fr',
         weekStart: 1,
         todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		forceParse: 0,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
         showMeridian: 1
     });
  
 });
+
+app.controller("detailsController",function($scope){
+    //$scope.templates=[1];
+    $scope.details=true;
+    $scope.edit=true;
+$scope.loadModal=function(){
+    if($scope.details){
+        return 'CRmodal.html'
+    }
+    else
+        return 'reschedule.html'
+}
+$scope.reschedule=function(){
+    console.log("entered");
+    $scope.edit=false;
+    $scope.details=false;
+    //$scope.loadModal();
+}
+});
+
